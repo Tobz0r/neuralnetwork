@@ -22,7 +22,7 @@ public class fileReader {
             while ((line = br.readLine()) != null) {
                 //I början startar ju varje ansiktsfil med # och sen en ny rad så kollar dom där så att den hoppar över
                 if (line.startsWith("#") || line.trim().isEmpty()) {
-                    if (face.getLabel() != null && face.isFinished()) {
+                    if (face.isFinished()) {
                         images.add(face); /* lägg till den färdiga matrisen i listan och gå vidare till nästa ansikte*/
                         face = new Image();
                     }
@@ -35,7 +35,7 @@ public class fileReader {
                         String[] lineNumbers = line.split(" ");
                         /* lägger till varje rad i en matris*/
                         for (int i = 0; i < lineNumbers.length; i++) {
-                            face.addToFace(Integer.parseInt(lineNumbers[i]), i, lineNumber);
+                            face.addToFace(Integer.parseInt(lineNumbers[i]), lineNumber, i);
                         }
                         lineNumber++;
                     } else {

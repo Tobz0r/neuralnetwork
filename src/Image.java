@@ -28,7 +28,7 @@ public class Image {
         matrix[i][j]=value;
     }
     public boolean isFinished(){
-        return matrix.length==IMG_SIZE;
+        return matrix.length==IMG_SIZE && label!=null;
     }
 
 }
