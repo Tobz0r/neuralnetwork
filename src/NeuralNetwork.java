@@ -5,7 +5,7 @@
 public class NeuralNetwork {
 
 
-    public void run(){
+    public void train(){
         while(true){
             System.out.println("eliashej");
         }
