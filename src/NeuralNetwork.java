@@ -6,6 +6,13 @@ import java.util.ArrayList;
 
 public class NeuralNetwork {
 
+    private int[][] trainingNetwork;
+
+
+    public NeuralNetwork(){
+
+    }
+
     /**
      * Tar in en arraylista med bilder, sedan tränar
      * nätverket att känna igen bilder mha facit
