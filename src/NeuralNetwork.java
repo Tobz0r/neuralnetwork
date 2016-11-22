@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Random;
 
@@ -41,17 +42,38 @@ public class NeuralNetwork {
      * @param images
      */
     public void train(ArrayList<Image> images, Hashtable<String, Integer> solutions){
-        int y;
+        int y; //desired output
+        int x; //The input from node
+        int LR =1 ; //Learning rate 1 is temporary
+        Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel());
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
+                    x = images.get(i).getMatrix()[j][k];
+                    //generate learning rate?
+                    LR = generateLearningRate();
+                    if(LR < 1){
+                        //Learn slowly and convergence takes forever
+                    }else if(LR > 1){
+                        //Can make changes that are drastic
+                    }else{
+                        //Learning rate is fine? do stuff?
 
-                    System.out.print(y);
+                    }
+                  //  System.out.println(x);
                 }
             }
-            System.out.println(i+1);
+           // System.out.print(y);
+            //System.out.println(i+1);
         }
+    }
+    
+
+    private int generateLearningRate(){
+        int newLR = 1;
+        //fixa en learning rate??
+        return newLR;
     }
 
     public int activation(Image image){
