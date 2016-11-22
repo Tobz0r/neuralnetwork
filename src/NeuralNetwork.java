@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * MAINFUNKTIONISH
@@ -18,7 +19,7 @@ public class NeuralNetwork {
      * nätverket att känna igen bilder mha facit
      * @param images
      */
-    public void train(ArrayList images){
+    public void train(ArrayList images, Hashtable solutions){
         while(true){
             System.out.println("eliashej");
         }
