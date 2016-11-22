@@ -63,7 +63,7 @@ public class ImageParser {
 
 
      */
-    public Hashtable<String, Integer> parseFacit(String failePath) {
+    public Hashtable<String, Integer> parseSolutions(String failePath) {
         Hashtable<String, Integer> facit = new Hashtable<>();
 
 
