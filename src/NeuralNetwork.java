@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * MAINFUNKTIONISH
  */
@@ -5,7 +7,7 @@
 public class NeuralNetwork {
 
 
-    public void train(){
+    public void train(ArrayList images){
         while(true){
             System.out.println("eliashej");
         }
