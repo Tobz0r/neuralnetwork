@@ -8,7 +8,7 @@ import java.util.Hashtable;
 /**
  * Created by sejiaw on 2016-10-13.
  */
-public class fileReader {
+public class ImageParser {
 
     public ArrayList<Image> parseImage(String filePath) {
         /*Lista att spara alla ansikten i*/
