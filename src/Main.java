@@ -2,13 +2,16 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Main {
+ //   java Faces training-A.txt facit-A.txt test-B.txt > result.txt
 
     public static void main(String[] args) {
         ImageParser fileReader=new ImageParser();
-        ArrayList<Image> training=fileReader.parseImage("training.txt");
-        Hashtable<String, Integer> solutions=fileReader.parseSolutions("training-facit.txt");
+        ArrayList<Image> training=fileReader.parseImage(args[0]);
+        ArrayList<Image> testing=fileReader.parseImage(args[2]);
+        Hashtable<String, Integer> solutions=fileReader.parseSolutions(args[1]);
         NeuralNetwork neuralNetwork = new NeuralNetwork();
-        neuralNetwork.train(training,solutions);
+        neuralNetwork.trainNetwork(training,solutions);
+        neuralNetwork.testNetwork(testing);
 
         System.out.println("JEBANE!");
     }

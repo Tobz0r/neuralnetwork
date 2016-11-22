@@ -18,13 +18,13 @@ public class NeuralNetwork {
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
-                double r = rand.nextDouble()% 100; //ändra 100 till högre för högre tal osv
+                double r = rand.nextDouble(); //ändra 100 till högre för högre tal osv
                 trainingNetwork[i][j] = Math.abs(r);
             }
 
         }
         //testa ba skriva ut
-        
+
      /*   for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
                 System.out.print(trainingNetwork[i][j]+ " ");
@@ -41,10 +41,10 @@ public class NeuralNetwork {
      * nätverket att känna igen bilder mha facit
      * @param images
      */
-    public void train(ArrayList<Image> images, Hashtable<String, Integer> solutions){
+    public void trainNetwork(ArrayList<Image> images, Hashtable<String, Integer> solutions){
         int y; //desired output
         int x; //The input from node
-        int LR =1 ; //Learning rate 1 is temporary
+        double LR =1 ; //Learning rate 1 is temporary
         double e; // Output error
         double wd; //delta w
         Collections.shuffle(images); //shuffle randomly list
@@ -62,18 +62,19 @@ public class NeuralNetwork {
                         //Can make changes that are drastic
                     }else{
                         //Learning rate is fine? do stuff?
+                        LR=0.75;
                         wd = generateDeltaW(LR, e, x);
                         trainingNetwork[j][k] +=wd;
                     }
-                  //  System.out.println(x);
+                    //  System.out.println(x);
                 }
             }
-           // System.out.print(y);
+            // System.out.print(y);
             //System.out.println(i+1);
         }
     }
-    
-    private double generateDeltaW(int LR, double e, int x) {
+
+    private double generateDeltaW(double LR, double e, int x) {
         return LR*e*x;
     }
 
@@ -82,8 +83,8 @@ public class NeuralNetwork {
     private double generateError(int y, int a){
         return y-a;
     }
-    private int generateLearningRate(){
-        int newLR = 1;
+    private double generateLearningRate(){
+        double newLR = 1;
         //fixa en learning rate??
         return newLR;
     }
@@ -109,6 +110,13 @@ public class NeuralNetwork {
             return 4; //MAD
         }
         return 0; //fail?
+    }
+
+    public void testNetwork(ArrayList<Image> images){
+        System.out.println("#Testresults");
+        for(Image image:images){
+            System.out.println(image.getLabel()+" "+activation(image));
+        }
     }
 
 
