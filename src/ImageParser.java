@@ -46,7 +46,7 @@ public class ImageParser {
                 }
             }
         } catch (IOException e) {
-            System.out.println("jebane" + e.getLocalizedMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return images;
     }
