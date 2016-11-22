@@ -40,12 +40,13 @@ public class NeuralNetwork {
      * nätverket att känna igen bilder mha facit
      * @param images
      */
-    public void train(ArrayList images, Hashtable solutions){
+    public void train(ArrayList<Image> images, Hashtable<String, Integer> solutions){
         int y;
         for(int i =0; i < images.size() ;i++ ){
+            y=solutions.get(images.get(i).getLabel());
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
-                    y = ;
+
                     System.out.print(y);
                 }
             }
