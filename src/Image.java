@@ -30,6 +30,9 @@ public class Image {
     public boolean isFinished(){
         return matrix.length==IMG_SIZE && label!=null;
     }
+    public int[][] getMatrix(){
+        return matrix;
+    }
 
     public void printMatrix(){
         try {
