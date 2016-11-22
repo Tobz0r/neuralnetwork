@@ -23,12 +23,12 @@ public class NeuralNetwork {
         }
         //testa ba skriva ut
         
-        for(int i=0; i < 20; i++){
+     /*   for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
                 System.out.print(trainingNetwork[i][j]+ " ");
             }
             System.out.println();
-        }
+        } */
 
     }
 
@@ -40,8 +40,15 @@ public class NeuralNetwork {
      * @param images
      */
     public void train(ArrayList images, Hashtable solutions){
-        while(true){
-            System.out.println("eliashej");
+        int y;
+        for(int i =0; i < images.size() ;i++ ){
+            for (int j = 0; j < trainingNetwork.length; j++) {
+                for (int k = 0; k < trainingNetwork[0].length; k++) {
+                    y = ;
+                    System.out.print(y);
+                }
+            }
+            System.out.println(i+1);
         }
     }
 
