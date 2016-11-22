@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 public class NeuralNetwork {
 
-
+    /**
+     * Tar in en arraylista med bilder, sedan tränar
+     * nätverket att känna igen bilder mha facit
+     * @param images
+     */
     public void train(ArrayList images){
         while(true){
             System.out.println("eliashej");
