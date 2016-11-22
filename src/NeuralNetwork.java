@@ -8,15 +8,15 @@ import java.util.Random;
 
 public class NeuralNetwork {
 
-    private int[][] trainingNetwork;
+    private double[][] trainingNetwork;
 
     public NeuralNetwork(){
-        trainingNetwork = new int[20][20];
+        trainingNetwork = new double[20][20];
         Random rand = new Random();
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
-                Integer r = rand.nextInt()% 100; //ändra 100 till högre för högre tal osv
+                double r = rand.nextDouble()% 100; //ändra 100 till högre för högre tal osv
                 trainingNetwork[i][j] = Math.abs(r);
             }
 
@@ -46,11 +46,26 @@ public class NeuralNetwork {
     }
 
     public int activation(Image image){
-
-
-
-
-        return 1;
+        double sum=0;
+        int[][] imageMatrix=image.getMatrix();
+        for(int i=0; i < imageMatrix.length;i++){
+            for(int j=0; j < imageMatrix[0].length;j++){
+                sum+=(imageMatrix[i][j]*trainingNetwork[i][j]);
+            }
+        }
+        double activation=Math.tanh(sum);
+        if(activation<0.25){
+            return 1; //HAPPY
+        }else if(activation<0.5){
+            return 2; //SAD
+        }
+        else if(activation<0.75){
+            return 3; //MISCHIEVOUS
+        }
+        else if(activation<=1){
+            return 4; //MAD
+        }
+        return 0; //fail?
     }
 
 
