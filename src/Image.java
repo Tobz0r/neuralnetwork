@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class Image {
 
     private final int IMG_SIZE=20;
-    public String label; //Label Image1, Image2 etc..
-    public double[][] matrix;
+    private String label; //Label Image1, Image2 etc..
+    private int[][] matrix;
 
     public Image(){
         label=null;
-        matrix=new double[IMG_SIZE][IMG_SIZE];
+        matrix=new int[IMG_SIZE][IMG_SIZE];
     }
 
     public String getLabel(){
@@ -24,11 +24,20 @@ public class Image {
         this.label=label;
     }
 
-    public void addToFace(double value,int i, int j){
+    public void addToFace(int value,int i, int j){
         matrix[i][j]=value;
     }
     public boolean isFinished(){
         return matrix.length==IMG_SIZE && label!=null;
+    }
+
+    public void printMatrix(){
+        for(int i=0; i < matrix.length;i++){
+            for(int j=0; j < matrix[0].length;j++){
+                System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println();
+        }
     }
 
 }
