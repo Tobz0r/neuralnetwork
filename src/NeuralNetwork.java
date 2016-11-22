@@ -13,23 +13,19 @@ public class NeuralNetwork {
 
     public NeuralNetwork(){
         trainingNetwork = new double[IMG_SIZE][IMG_SIZE];
-        Random rand = new Random();
-        rand.setSeed(System.currentTimeMillis());
-        for(int i=0; i < 20; i++){
-            for(int j =0; j < 20; j++){
-                double r = rand.nextDouble()% 100; //ändra 100 till högre för högre tal osv
-                trainingNetwork[i][j] = Math.abs(r);
+        for(int i=0; i < IMG_SIZE; i++){
+            for(int j =0; j < IMG_SIZE; j++){
+                trainingNetwork[i][j] = Math.abs(new Random(System.currentTimeMillis()).nextDouble());
             }
 
         }
         //testa ba skriva ut
-        
-     /*   for(int i=0; i < 20; i++){
+        for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
                 System.out.print(trainingNetwork[i][j]+ " ");
             }
             System.out.println();
-        } */
+        }
 
     }
 
@@ -47,10 +43,9 @@ public class NeuralNetwork {
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
 
-                    System.out.print(y);
+
                 }
             }
-            System.out.println(i+1);
         }
     }
 
@@ -76,6 +71,7 @@ public class NeuralNetwork {
         }
         return 0; //fail?
     }
+    
 
 
 }

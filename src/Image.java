@@ -34,6 +34,7 @@ public class Image {
         return matrix;
     }
 
+
     public void printMatrix(){
         try {
             for (int i = 0; i < matrix.length; i++) {
