@@ -48,6 +48,13 @@ public class ImageParser {
         } catch (IOException e) {
             System.out.println(e.getLocalizedMessage());
         }
+        finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return images;
     }
 
@@ -64,10 +71,30 @@ public class ImageParser {
 
      */
     public Hashtable<String, Integer> parseSolutions(String failePath) {
-        Hashtable<String, Integer> facit = new Hashtable<>();
+        Hashtable<String, Integer> solutions = new Hashtable<>();
+        BufferedReader br=null;
+        String line=null;
+        try{
+            br=new BufferedReader(new FileReader(failePath));
+            while((line=br.readLine())!=null){
+                if (!line.startsWith("#") || !line.trim().isEmpty()) {
+                    String[] lines=line.split(" ");
+                    if(lines.length==2) {
+                        solutions.put(lines[0], Integer.parseInt(lines[1]));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-
-        return facit;
+        return solutions;
     }
 
 }

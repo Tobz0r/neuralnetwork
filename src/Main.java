@@ -1,14 +1,11 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Main {
 
     public static void main(String[] args) {
         ImageParser fileReader=new ImageParser();
-        ArrayList<Image> jeb=fileReader.parseImage("training.txt");
-        for(Image image:jeb){
-            image.printMatrix();
-            System.out.println("Next");
-        }
-        System.out.println("JEBANE!");
+        ArrayList<Image> training=fileReader.parseImage("training.txt");
+        Hashtable<String, Integer> solutions=fileReader.parseSolutions("training-facit.txt");
     }
 }
