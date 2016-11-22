@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Random;
 
@@ -13,19 +14,23 @@ public class NeuralNetwork {
 
     public NeuralNetwork(){
         trainingNetwork = new double[IMG_SIZE][IMG_SIZE];
-        for(int i=0; i < IMG_SIZE; i++){
-            for(int j =0; j < IMG_SIZE; j++){
-                trainingNetwork[i][j] = Math.abs(new Random(System.currentTimeMillis()).nextDouble());
+        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
+        for(int i=0; i < 20; i++){
+            for(int j =0; j < 20; j++){
+                double r = rand.nextDouble()% 100; //ändra 100 till högre för högre tal osv
+                trainingNetwork[i][j] = Math.abs(r);
             }
 
         }
         //testa ba skriva ut
-        for(int i=0; i < 20; i++){
+        
+     /*   for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
                 System.out.print(trainingNetwork[i][j]+ " ");
             }
             System.out.println();
-        }
+        } */
 
     }
 
@@ -37,16 +42,50 @@ public class NeuralNetwork {
      * @param images
      */
     public void train(ArrayList<Image> images, Hashtable<String, Integer> solutions){
-        int y;
+        int y; //desired output
+        int x; //The input from node
+        int LR =1 ; //Learning rate 1 is temporary
+        double e; // Output error
+        double wd; //delta w
+        Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel());
+            e = generateError(y,activation(images.get(i)));
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
-
-
+                    x = images.get(i).getMatrix()[j][k];
+                    //generate learning rate?
+                    LR = generateLearningRate();
+                    if(LR < 1){
+                        //Learn slowly and convergence takes forever
+                    }else if(LR > 1){
+                        //Can make changes that are drastic
+                    }else{
+                        //Learning rate is fine? do stuff?
+                        wd = generateDeltaW(LR, e, x);
+                        trainingNetwork[j][k] +=wd;
+                    }
+                  //  System.out.println(x);
                 }
             }
+           // System.out.print(y);
+            //System.out.println(i+1);
         }
+    }
+    
+    private double generateDeltaW(int LR, double e, int x) {
+        return LR*e*x;
+    }
+
+
+
+    private double generateError(int y, int a){
+        return y-a;
+    }
+    private int generateLearningRate(){
+        int newLR = 1;
+        //fixa en learning rate??
+        return newLR;
     }
 
     public int activation(Image image){
@@ -71,7 +110,6 @@ public class NeuralNetwork {
         }
         return 0; //fail?
     }
-    
 
 
 }
