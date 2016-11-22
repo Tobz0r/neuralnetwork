@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Random;
 
 /**
  * MAINFUNKTIONISH
@@ -9,10 +10,28 @@ public class NeuralNetwork {
 
     private int[][] trainingNetwork;
 
-
     public NeuralNetwork(){
+        trainingNetwork = new int[20][20];
+        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
+        for(int i=0; i < 20; i++){
+            for(int j =0; j < 20; j++){
+                Integer r = rand.nextInt()% 100; //ändra 100 till högre för högre tal osv
+                trainingNetwork[i][j] = Math.abs(r);
+            }
+
+        }
+        //testa ba skriva ut
+        for(int i=0; i < 20; i++){
+            for(int j =0; j < 20; j++){
+                System.out.println(trainingNetwork[i][j]);
+            }
+
+        }
 
     }
+
+
 
     /**
      * Tar in en arraylista med bilder, sedan tränar
