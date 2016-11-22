@@ -7,7 +7,8 @@ public class Main {
         ImageParser fileReader=new ImageParser();
         ArrayList<Image> training=fileReader.parseImage("training.txt");
         Hashtable<String, Integer> solutions=fileReader.parseSolutions("training-facit.txt");
-        NeuralNetwork jebjeb = new NeuralNetwork();
+        NeuralNetwork neuralNetwork = new NeuralNetwork();
+        neuralNetwork.train(training,solutions);
 
         System.out.println("JEBANE!");
     }

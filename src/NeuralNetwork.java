@@ -16,7 +16,7 @@ public class NeuralNetwork {
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
-                Integer r = rand.nextInt(); //ändra 100 till högre för högre tal osv
+                Integer r = rand.nextInt()% 100; //ändra 100 till högre för högre tal osv
                 trainingNetwork[i][j] = Math.abs(r);
             }
 
@@ -43,6 +43,14 @@ public class NeuralNetwork {
         while(true){
             System.out.println("eliashej");
         }
+    }
+
+    public int activation(Image image){
+
+
+
+
+        return 1;
     }
 
 
