@@ -40,6 +40,7 @@ public class Image {
                 System.out.println();
             }
         }catch (NullPointerException e){}
+
     }
 
 }
