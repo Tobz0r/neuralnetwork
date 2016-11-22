@@ -45,9 +45,12 @@ public class NeuralNetwork {
         int y; //desired output
         int x; //The input from node
         int LR =1 ; //Learning rate 1 is temporary
+        double e; // Output error
+        double wd; //delta w
         Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel());
+            e = generateError(y,activation(images.get(i)));
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
                     x = images.get(i).getMatrix()[j][k];
@@ -59,7 +62,8 @@ public class NeuralNetwork {
                         //Can make changes that are drastic
                     }else{
                         //Learning rate is fine? do stuff?
-
+                        wd = generateDeltaW(LR, e, x);
+                        trainingNetwork[j][k] +=wd;
                     }
                   //  System.out.println(x);
                 }
@@ -69,7 +73,15 @@ public class NeuralNetwork {
         }
     }
     
+    private double generateDeltaW(int LR, double e, int x) {
+        return LR*e*x;
+    }
 
+
+
+    private double generateError(int y, int a){
+        return y-a;
+    }
     private int generateLearningRate(){
         int newLR = 1;
         //fixa en learning rate??
