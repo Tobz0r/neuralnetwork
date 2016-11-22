@@ -9,9 +9,10 @@ import java.util.Random;
 public class NeuralNetwork {
 
     private double[][] trainingNetwork;
+    private final int IMG_SIZE=20;
 
     public NeuralNetwork(){
-        trainingNetwork = new double[20][20];
+        trainingNetwork = new double[IMG_SIZE][IMG_SIZE];
         Random rand = new Random();
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < 20; i++){
