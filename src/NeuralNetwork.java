@@ -11,13 +11,15 @@ public class NeuralNetwork {
 
     private double[][] trainingNetwork;
     private final int IMG_SIZE=20;
+    private int expression;
 
-    public NeuralNetwork(){
+    public NeuralNetwork(int expression){
+        this.expression=expression;
         trainingNetwork = new double[IMG_SIZE][IMG_SIZE];
         Random rand = new Random();
         rand.setSeed(System.currentTimeMillis());
-        for(int i=0; i < 20; i++){
-            for(int j =0; j < 20; j++){
+        for(int i=0; i < IMG_SIZE; i++){
+            for(int j =0; j < IMG_SIZE; j++){
                 trainingNetwork[i][j] = Math.abs(rand.nextDouble());
             }
 
@@ -48,7 +50,7 @@ public class NeuralNetwork {
         double wd; //delta w
         Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
-            y=solutions.get(images.get(i).getLabel());
+            y=solutions.get(images.get(i).getLabel())==expression?1:0;
             e = generateError(y,activation(images.get(i)));
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {

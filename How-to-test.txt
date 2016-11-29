@@ -10,7 +10,7 @@ facit-B.txt          contains the corresponing facit values
 
 run your program like this (Java example):
 
-java Faces training-A.txt facit-A.txt test-B.txt > result.txt
+java Expresseions training-A.txt facit-A.txt test-B.txt > result.txt
 
 and then run the 'grading' program, which tests your results against the facit:
 
