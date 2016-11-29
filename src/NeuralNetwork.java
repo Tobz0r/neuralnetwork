@@ -83,7 +83,7 @@ public class NeuralNetwork {
         return (1 / (1 + Math.exp(-x)));
     }
 
-    private double generateError(int y, int a){
+    private double generateError(int y, double a){
         return y-a;
     }
     private double generateLearningRate(){
@@ -92,7 +92,7 @@ public class NeuralNetwork {
         return newLR;
     }
 
-    public int activation(Image image){
+    public double activation(Image image){
         double sum=0;
         int[][] imageMatrix=image.getMatrix();
         for(int i=0; i < imageMatrix.length;i++){
@@ -100,10 +100,9 @@ public class NeuralNetwork {
                 sum+=(imageMatrix[i][j]*trainingNetwork[i][j]);
             }
         }
-        sum=sum/(imageMatrix.length); //för att få mindre? idk
-        System.out.println(sum+" FÖRE");
-        double activation=sigmoid(sum);
-        System.out.println(activation+" EFTER");
+        double activation=sum/(imageMatrix.length*imageMatrix[0].length);
+        return activation;
+      /*  System.out.println(activation+" EFTER");
         if(activation<.25){
             return 1; //HAPPY
         }else if(activation<.5){
@@ -115,11 +114,12 @@ public class NeuralNetwork {
         else if(activation<=1){
             return 4; //MAD
         }
-        return 0; //fail?
+        return 0; //fail?*/
     }
 
     public void testNetwork(ArrayList<Image> images){
         System.out.println("#Testresults");
+        int result=0;
         for(Image image:images){
             System.out.println(image.getLabel()+" "+activation(image));
         }

@@ -23,6 +23,7 @@ public class ImageParser {
                 //I början startar ju varje ansiktsfil med # och sen en ny rad så kollar dom där så att den hoppar över
                 if (line.startsWith("#") || line.trim().isEmpty()) {
                     if (face.isFinished()) {
+                        face.normalizeMatrix();
                         images.add(face); /* lägg till den färdiga matrisen i listan och gå vidare till nästa ansikte*/
                         face = new Image();
                     }

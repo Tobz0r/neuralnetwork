@@ -33,7 +33,13 @@ public class Image {
     public int[][] getMatrix(){
         return matrix;
     }
-
+    public void normalizeMatrix(){
+        for(int i=0;i < IMG_SIZE;i++){
+            for(int j=0;j<IMG_SIZE;j++){
+                matrix[i][j]/=32;
+            }
+        }
+    }
 
     public void printMatrix(){
         try {
