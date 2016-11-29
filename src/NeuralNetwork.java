@@ -18,8 +18,7 @@ public class NeuralNetwork {
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < 20; i++){
             for(int j =0; j < 20; j++){
-                double r = rand.nextDouble(); //ändra 100 till högre för högre tal osv
-                trainingNetwork[i][j] = Math.abs(r);
+                trainingNetwork[i][j] = Math.abs(rand.nextDouble());
             }
 
         }
@@ -62,7 +61,7 @@ public class NeuralNetwork {
                         //Can make changes that are drastic
                     }else{
                         //Learning rate is fine? do stuff?
-                        LR=0.75;
+                        LR=0.5;
                         wd = generateDeltaW(LR, e, x);
                         trainingNetwork[j][k] +=wd;
                     }
@@ -74,11 +73,15 @@ public class NeuralNetwork {
         }
     }
 
+
     private double generateDeltaW(double LR, double e, int x) {
         return LR*e*x;
     }
 
 
+    private double sigmoid(double x){
+        return (1 / (1 + Math.exp(-x)));
+    }
 
     private double generateError(int y, int a){
         return y-a;
@@ -97,13 +100,16 @@ public class NeuralNetwork {
                 sum+=(imageMatrix[i][j]*trainingNetwork[i][j]);
             }
         }
-        double activation=Math.tanh(sum);
-        if(activation<0.25){
+        sum=sum/(imageMatrix.length); //för att få mindre? idk
+        System.out.println(sum+" FÖRE");
+        double activation=sigmoid(sum);
+        System.out.println(activation+" EFTER");
+        if(activation<.25){
             return 1; //HAPPY
-        }else if(activation<0.5){
+        }else if(activation<.5){
             return 2; //SAD
         }
-        else if(activation<0.75){
+        else if(activation<.75){
             return 3; //MISCHIEVOUS
         }
         else if(activation<=1){
