@@ -88,7 +88,9 @@ public class NeuralNetwork {
     private double generateError(int y, double a){
         return y-a;
     }
-    private double generateLearningRate(){
+
+
+    private double generateLearningRate(){ //behövs inte längre va?
         double newLR = 1;
         //fixa en learning rate??
         return newLR;
