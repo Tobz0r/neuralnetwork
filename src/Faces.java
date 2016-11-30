@@ -9,11 +9,9 @@ public class Faces {
         ArrayList<Image> training=fileReader.parseImage("training-A.txt");
         ArrayList<Image> testing=fileReader.parseImage("test-B.txt");
         Hashtable<String, Integer> solutions=fileReader.parseSolutions("facit-A.txt");
-        NeuralNetwork neuralNetwork = new NeuralNetwork(1);
-        neuralNetwork.trainNetwork(training,solutions);
-        neuralNetwork.testNetwork(testing);
-
-        System.out.println("JEBANE!");
+        NetworkTester tester=new NetworkTester(training,solutions);
+        tester.train();
+        tester.testResults(testing);
     }
 
 }
