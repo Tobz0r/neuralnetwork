@@ -6,10 +6,10 @@ import java.util.Hashtable;
  */
 public class NetworkTester {
 
-    public final static int HAPPY=1;
-    public final static int SAD=2;
-    public final static int MISCHIEVOUS=3;
-    public final static int MAD=4;
+    private final int HAPPY=1;
+    private final int SAD=2;
+    private final int MISCHIEVOUS=3;
+    private final int MAD=4;
     private final int nrOfExpressions=4;
     private ArrayList<NeuralNetwork> networks;
     private ArrayList<Image> images;
@@ -22,5 +22,15 @@ public class NetworkTester {
         for(int i=1;i <=nrOfExpressions;i++){
             networks.add(new NeuralNetwork(i));
         }
+    }
+
+    public void train(){
+        for(NeuralNetwork network:networks){
+            network.trainNetwork(images,solutions);
+        }
+    }
+
+    public void testResults(ArrayList<Image> testImages){
+
     }
 }
