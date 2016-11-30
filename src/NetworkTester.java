@@ -25,7 +25,9 @@ public class NetworkTester {
     }
 
     public void train(){
-
+        for(NeuralNetwork network:networks){
+            network.trainNetwork(images,solutions);
+        }
     }
 
     public void testResults(ArrayList<Image> testImages){
