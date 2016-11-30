@@ -42,6 +42,7 @@ public class NeuralNetwork {
      * nätverket att känna igen bilder mha facit
      * @param images
      */
+    
     public void trainNetwork(ArrayList<Image> images, Hashtable<String, Integer> solutions){
         int y; //desired output
         int x; //The input from node
