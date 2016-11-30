@@ -121,6 +121,8 @@ public class NeuralNetwork {
         return 0; //fail?*/
     }
 
+
+    /* ska flyttas till networktester*/
     public void testNetwork(ArrayList<Image> images){
         System.out.println("#Testresults");
         int result=0;
