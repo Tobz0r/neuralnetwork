@@ -24,18 +24,7 @@ public class NeuralNetwork {
             }
 
         }
-        //testa ba skriva ut
-
-     /*   for(int i=0; i < 20; i++){
-            for(int j =0; j < 20; j++){
-                System.out.print(trainingNetwork[i][j]+ " ");
-            }
-            System.out.println();
-        } */
-
     }
-
-
 
     /**
      * Tar in en arraylista med bilder, sedan tränar
@@ -67,15 +56,10 @@ public class NeuralNetwork {
                         wd = generateDeltaW(LR, e, x);
                         trainingNetwork[j][k] +=wd;
                     }
-                    //  System.out.println(x);
                 }
             }
-            // System.out.print(y);
-            //System.out.println(i+1);
         }
     }
-
-
     private double generateDeltaW(double LR, double e, int x) {
         return LR*e*x;
     }
@@ -106,36 +90,6 @@ public class NeuralNetwork {
         }
         double activation=sum/(imageMatrix.length*imageMatrix[0].length);
         return activation;
-      /*  System.out.println(activation+" EFTER");
-        if(activation<.25){
-            return 1; //HAPPY
-        }else if(activation<.5){
-            return 2; //SAD
-        }
-        else if(activation<.75){
-            return 3; //MISCHIEVOUS
-        }
-        else if(activation<=1){
-            return 4; //MAD
-        }
-        return 0; //fail?*/
     }
-
-
-    /* ska flyttas till networktester*/
-    public void testNetwork(ArrayList<Image> images){
-        System.out.println("#Testresults");
-        int result=0;
-        for(Image image:images){
-            System.out.println(image.getLabel()+" "+activation(image));
-        }
-    }
-
 
 }
-
-/*
-http://softwareengineering.stackexchange.com/questions/289622/is-the-output-of-a-neural-net-supposed-to-have-had-the-activation-function-appli
-https://www.quora.com/What-is-the-role-of-the-activation-function-in-a-neural-network
-https://www8.cs.umu.se/kurser/5DV121/HT15/slides/10%20-%20ANN.pdf
- */
