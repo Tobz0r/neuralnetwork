@@ -31,12 +31,12 @@ public class NetworkTester {
     }
 
     public void testResults(ArrayList<Image> testImages){
-        for(Image image:images){
-            double happy=networks.get(1).activation(image);
-            double sad=networks.get(2).activation(image);
-            double mischievous=networks.get(3).activation(image);
-            double mad=networks.get(4).activation(image);
-
+        for(Image image:testImages){
+            double happy=networks.get(0).activation(image);
+            double sad=networks.get(1).activation(image);
+            double mischievous=networks.get(2).activation(image);
+            double mad=networks.get(3).activation(image);
+            System.out.println(happy+ " "+sad+" " + mischievous+" "+ mad+" ");
             int result=HAPPY;
             double highestValue=happy;
             if(sad>highestValue){
