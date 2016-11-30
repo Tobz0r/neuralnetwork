@@ -45,7 +45,7 @@ public class NeuralNetwork {
     public void trainNetwork(ArrayList<Image> images, Hashtable<String, Integer> solutions){
         int y; //desired output
         int x; //The input from node
-        double LR =1 ; //Learning rate 1 is temporary
+        double LR =0.15;
         double e; // Output error
         double wd; //delta w
         Collections.shuffle(images); //shuffle randomly list
@@ -56,17 +56,10 @@ public class NeuralNetwork {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
                     x = images.get(i).getMatrix()[j][k];
                     //generate learning rate?
-                    LR = generateLearningRate();
-                    if(LR < 1){
-                        //Learn slowly and convergence takes forever
-                    }else if(LR > 1){
-                        //Can make changes that are drastic
-                    }else{
                         //Learning rate is fine? do stuff?
                         LR=0.5;
                         wd = generateDeltaW(LR, e, x);
                         trainingNetwork[j][k] +=wd;
-                    }
                     //  System.out.println(x);
                 }
             }
@@ -90,11 +83,6 @@ public class NeuralNetwork {
     }
 
 
-    private double generateLearningRate(){ //behövs inte längre va?
-        double newLR = 1;
-        //fixa en learning rate??
-        return newLR;
-    }
 
     public double activation(Image image){
         double sum=0;
