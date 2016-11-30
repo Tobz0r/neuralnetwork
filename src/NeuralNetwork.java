@@ -22,17 +22,7 @@ public class NeuralNetwork {
             for(int j =0; j < IMG_SIZE; j++){
                 trainingNetwork[i][j] = Math.abs(rand.nextDouble());
             }
-
         }
-        //testa ba skriva ut
-
-     /*   for(int i=0; i < 20; i++){
-            for(int j =0; j < 20; j++){
-                System.out.print(trainingNetwork[i][j]+ " ");
-            }
-            System.out.println();
-        } */
-
     }
 
 
@@ -85,41 +75,17 @@ public class NeuralNetwork {
 
 
 
-    public double activation(Image image){
-        double sum=0;
-        int[][] imageMatrix=image.getMatrix();
-        for(int i=0; i < imageMatrix.length;i++){
-            for(int j=0; j < imageMatrix[0].length;j++){
-                sum+=(imageMatrix[i][j]*trainingNetwork[i][j]);
+    public double activation(Image image) {
+        double sum = 0;
+        int[][] imageMatrix = image.getMatrix();
+        for (int i = 0; i < imageMatrix.length; i++) {
+            for (int j = 0; j < imageMatrix[0].length; j++) {
+                sum += (imageMatrix[i][j] * trainingNetwork[i][j]);
             }
         }
-        double activation=sum/(imageMatrix.length*imageMatrix[0].length);
+        double activation = sum / (imageMatrix.length * imageMatrix[0].length);
         return activation;
-      /*  System.out.println(activation+" EFTER");
-        if(activation<.25){
-            return 1; //HAPPY
-        }else if(activation<.5){
-            return 2; //SAD
-        }
-        else if(activation<.75){
-            return 3; //MISCHIEVOUS
-        }
-        else if(activation<=1){
-            return 4; //MAD
-        }
-        return 0; //fail?*/
     }
-
-
-    /* ska flyttas till networktester*/
-    public void testNetwork(ArrayList<Image> images){
-        System.out.println("#Testresults");
-        int result=0;
-        for(Image image:images){
-            System.out.println(image.getLabel()+" "+activation(image));
-        }
-    }
-
 
 }
 
