@@ -32,7 +32,7 @@ public class NeuralNetwork {
      * nätverket att känna igen bilder mha facit
      * @param images
      */
-    
+
     public void trainNetwork(ArrayList<Image> images, Hashtable<String, Integer> solutions){
         int y; //desired output
         int x; //The input from node
@@ -40,7 +40,7 @@ public class NeuralNetwork {
         double e; // Output error
         double wd; //delta w
         Collections.shuffle(images); //shuffle randomly list
-        for(int i =0; i < 14 ;i++ ){
+        for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel())==expression?1:0;
             e = generateError(y,activation(images.get(i)));
             for (int j = 0; j < trainingNetwork.length; j++) {
@@ -48,7 +48,6 @@ public class NeuralNetwork {
                     x = images.get(i).getMatrix()[j][k];
                     //generate learning rate?
                         //Learning rate is fine? do stuff?
-                        LR=0.15;
                         wd = generateDeltaW(LR, e, x);
                         trainingNetwork[j][k] +=wd;
                     //  System.out.println(x);
@@ -84,7 +83,6 @@ public class NeuralNetwork {
             }
         }
         double activation = sum / (imageMatrix.length * imageMatrix[0].length);
-        activation=sigmoid(activation);
         return activation;
     }
 
