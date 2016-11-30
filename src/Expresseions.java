@@ -1,6 +1,0 @@
-/**
- *  KONSTANTER
- */
-public class Expresseions {
-
-}
