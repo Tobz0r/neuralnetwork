@@ -20,6 +20,7 @@ public class Image {
     public String getLabel(){
         return label;
     }
+
     public void setLabel(String label){
         this.label=label;
     }
@@ -27,12 +28,15 @@ public class Image {
     public void addToFace(int value,int i, int j){
         matrix[i][j]=value;
     }
+
     public boolean isFinished(){
         return matrix.length==IMG_SIZE && label!=null;
     }
+
     public int[][] getMatrix(){
         return matrix;
     }
+
     public void normalizeMatrix(){
         for(int i=0;i < IMG_SIZE;i++){
             for(int j=0;j<IMG_SIZE;j++){
