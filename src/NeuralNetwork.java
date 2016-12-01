@@ -39,7 +39,7 @@ public class NeuralNetwork {
         double LR =0.15;
         double e; // Output error
         double wd; //delta w
-        Collections.shuffle(images); //shuffle randomly list
+      //  Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel())==expression?1:0;
             e = generateError(y,activation(images.get(i)));
