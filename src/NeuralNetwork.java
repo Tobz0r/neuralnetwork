@@ -82,8 +82,7 @@ public class NeuralNetwork {
                 sum += (imageMatrix[i][j] * trainingNetwork[i][j]);
             }
         }
-        double activation = sum / (imageMatrix.length * imageMatrix[0].length);
-        return sigmoid(activation);
+        return sigmoid(sum);
     }
 
 }
