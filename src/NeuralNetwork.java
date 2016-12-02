@@ -12,6 +12,7 @@ public class NeuralNetwork {
     private double[][] trainingNetwork;
     private final int IMG_SIZE=20;
     private int expression;
+    private double activation;
 
     public NeuralNetwork(int expression){
         this.expression=expression;
@@ -46,15 +47,11 @@ public class NeuralNetwork {
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
                     x = images.get(i).getMatrix()[j][k];
-                    //generate learning rate?
-                        //Learning rate is fine? do stuff?
-                        wd = generateDeltaW(LR, e, x);
-                        trainingNetwork[j][k] +=wd;
-                    //  System.out.println(x);
+                    wd = generateDeltaW(LR, e, x);
+                    trainingNetwork[j][k] +=wd;
+                    trainingNetwork[j][k]=trainingNetwork[j][k]<0?0:trainingNetwork[j][k];
                 }
             }
-            // System.out.print(y);
-            //System.out.println(i+1);
         }
     }
 
@@ -82,7 +79,24 @@ public class NeuralNetwork {
                 sum += (imageMatrix[i][j] * trainingNetwork[i][j]);
             }
         }
-        return sigmoid(sum);
+        activation=sigmoid(sum);
+        return activation;
+    }
+
+    public double getActivation(){
+        return activation;
+    }
+
+    public void printNetwork(){
+        try {
+            for (int i = 0; i < trainingNetwork.length; i++) {
+                for (int j = 0; j < trainingNetwork[0].length; j++) {
+                    System.out.print(trainingNetwork[i][j] + " ");
+                }
+                System.out.println();
+            }
+        }catch (NullPointerException e){}
+
     }
 
 }

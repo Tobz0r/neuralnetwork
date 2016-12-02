@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 /**
@@ -23,7 +24,6 @@ public class NetworkTester {
             networks.add(new NeuralNetwork(i));
         }
     }
-
     public void train(){
         for(NeuralNetwork network:networks){
             network.trainNetwork(images,solutions);
