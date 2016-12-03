@@ -56,6 +56,19 @@ public class Image {
         }catch (NullPointerException e){}
 
     }
+    // Roterar matrisen 90 grader x antal gånger
+    private double[][] rotateImage(int nrOfRotations) {
+        double[][] rotationArr = new double[20][20];
+
+        for(int k=0; k < nrOfRotations;k++) {
+            for (int i = 0; i < matrix.length; ++i) {
+                for (int j = 0; j < matrix[0].length; ++j) {
+                    rotationArr[i][j] = matrix[matrix.length - j - 1][i];
+                }
+            }
+        }
+        return rotationArr;
+    }
 
 
 }
