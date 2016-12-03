@@ -60,14 +60,29 @@ public class Image {
     private double[][] rotateImage(int nrOfRotations) {
         double[][] rotationArr = new double[20][20];
 
-        for(int k=0; k < nrOfRotations;k++) {
-            for (int i = 0; i < matrix.length; ++i) {
-                for (int j = 0; j < matrix[0].length; ++j) {
-                    rotationArr[j][matrix.length-1-i] = matrix[i][j];
+        for(int i=0; i < nrOfRotations;i++) {
+            for (int j=0; j < matrix.length;j++) {
+                for (int k=0; k < matrix[0].length;k++) {
+                    rotationArr[k][matrix.length-1-j]=matrix[j][k];
                 }
             }
         }
         return rotationArr;
+    }
+    private double[][] splitMatrix(double[][] image, int firstX, int firstY, int lastX, int lastY) {
+        double[][] retArr = new double[firstX+lastX][firstY+lastY];
+        int row=0;
+        int column=0;
+        for (int i=firstX; i<lastX;i++) {
+            for (int j=firstY; j<lastY;j++) {
+                retArr[row][column] = image[i][j];
+                column++;
+            }
+            column=0;
+            row++;
+        }
+
+        return retArr;
     }
 
 
