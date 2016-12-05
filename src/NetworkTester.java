@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Hashtable;
 
 /**
@@ -25,32 +26,49 @@ public class NetworkTester {
         }
     }
     public void train(){
-        for(NeuralNetwork network:networks){
-            network.trainNetwork(images,solutions);
+        double wrongAnswers = 1;
+        while (wrongAnswers > 0.0) {
+            wrongAnswers = 0;
+            Collections.shuffle(images);
+            for (Image image : images) {
+                for(NeuralNetwork network:networks){
+                    network.trainNetwork(image,solutions);
+                }
+                int answer=testResults(image);
+                if (answer != solutions.get(image.getLabel())) {
+                    wrongAnswers++;
+                }
+            }
+            wrongAnswers = wrongAnswers / images.size();
         }
     }
 
-    public void testResults(ArrayList<Image> testImages){
-        for(Image image:testImages){
-            double happy=networks.get(0).activation(image);
-            double sad=networks.get(1).activation(image);
-            double mischievous=networks.get(2).activation(image);
-            double mad=networks.get(3).activation(image);
-            System.out.println(happy+ " "+sad+" " + mischievous+" "+ mad+" ");
-            int result=HAPPY;
-            double highestValue=happy;
-            if(sad>highestValue){
-                result=SAD;
-                highestValue=sad;
-            }
-            if(mischievous>highestValue){
-                result=MISCHIEVOUS;
-                highestValue=mischievous;
-            }
-            if(mad>highestValue){
-                result=MAD;
-            }
-            System.out.println(image.getLabel()+" "+result);
+    public void test(ArrayList<Image> images){
+        for(Image image: images){
+            System.out.println(image.getLabel()+" "+testResults(image));
         }
+    }
+
+
+
+    public int testResults(Image image){
+        double happy=networks.get(0).activation(image);
+        double sad=networks.get(1).activation(image);
+        double mischievous=networks.get(2).activation(image);
+        double mad=networks.get(3).activation(image);
+        int result=HAPPY;
+        double highestValue=happy;
+        if(sad>highestValue){
+            result=SAD;
+            highestValue=sad;
+        }
+        if(mischievous>highestValue){
+            result=MISCHIEVOUS;
+            highestValue=mischievous;
+        }
+        if(mad>highestValue){
+            result=MAD;
+        }
+        return result;
     }
 }
