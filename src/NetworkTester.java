@@ -26,26 +26,21 @@ public class NetworkTester {
         }
     }
     public void train(){
-        double wrongAnswers = 1;
-        while (wrongAnswers > 0.0) {
-            wrongAnswers = 0;
-            Collections.shuffle(images);
+
             for (Image image : images) {
                 for(NeuralNetwork network:networks){
                     network.trainNetwork(image,solutions);
                 }
                 int answer=testResults(image);
                 if (answer != solutions.get(image.getLabel())) {
-                    wrongAnswers++;
                 }
-            }
-            wrongAnswers = wrongAnswers / images.size();
+
         }
     }
 
     public void test(ArrayList<Image> images){
         for(Image image: images){
-            System.out.println(image.getLabel()+" "+testResults(image));
+            //System.out.println(image.getLabel()+" "+testResults(image));
         }
     }
 
@@ -53,9 +48,15 @@ public class NetworkTester {
 
     public int testResults(Image image){
         double happy=networks.get(0).activation(image);
-        double sad=networks.get(1).activation(image);
+        double sad=networks.get(0).activation(image);
         double mischievous=networks.get(2).activation(image);
         double mad=networks.get(3).activation(image);
+/*
+        System.out.println("image 1 = " + networks.get(0).activation(image));
+        System.out.println("image 2 = " + networks.get(1).activation(image));
+        System.out.println("image 3 = " + networks.get(2).activation(image));
+        System.out.println("image 4 = " + networks.get(3).activation(image));
+*/
         int result=HAPPY;
         double highestValue=happy;
         if(sad>highestValue){
@@ -69,6 +70,7 @@ public class NetworkTester {
         if(mad>highestValue){
             result=MAD;
         }
+
         return result;
     }
 }
