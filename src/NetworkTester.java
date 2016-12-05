@@ -26,10 +26,12 @@ public class NetworkTester {
         }
     }
     public void train(){
+        int i=0;
         double wrongAnswers = 1;
-        while (wrongAnswers > 0.0) {
+        while (true) {
+            if(wrongAnswers==0)break;
             wrongAnswers = 0;
-            Collections.shuffle(images);
+            //Collections.shuffle(images);
             for (Image image : images) {
                 for(NeuralNetwork network:networks){
                     network.trainNetwork(image,solutions);
@@ -39,8 +41,11 @@ public class NetworkTester {
                     wrongAnswers++;
                 }
             }
-            wrongAnswers = wrongAnswers / images.size();
+            i++;
+            System.out.println("WRONG "+wrongAnswers);
+           // wrongAnswers = wrongAnswers / images.size();
         }
+        System.out.println("ITERATIONS "+i);
     }
 
     public void test(ArrayList<Image> images){

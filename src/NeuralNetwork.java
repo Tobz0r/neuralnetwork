@@ -77,7 +77,9 @@ public class NeuralNetwork {
                 sum += ((imageMatrix[i][j]/31) * trainingNetwork[i][j]);
             }
         }
+        System.out.println("SUM "+sum);
         activation=sigmoid(sum/400);
+        System.out.println("ACTIVATION "+activation);
         return activation;
     }
 
