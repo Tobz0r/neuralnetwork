@@ -51,7 +51,7 @@ public class NetworkTester {
 
     public void test(ArrayList<Image> images){
         for(Image image: images){
-            System.out.println(image.getLabel()+" "+testResults(image));
+           // System.out.println(image.getLabel()+" "+testResults(image));
         }
     }
 
