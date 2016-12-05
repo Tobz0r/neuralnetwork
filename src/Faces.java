@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Faces {
- //   java Expresseions training-A.txt facit-A.txt test-B.txt > result.txt
+ //   java Faces training-A.txt facit-A.txt test-B.txt > result.txt
 
     public static void main(String[] args) {
         ImageParser fileReader=new ImageParser();
