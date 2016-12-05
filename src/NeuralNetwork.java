@@ -21,7 +21,7 @@ public class NeuralNetwork {
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < IMG_SIZE; i++){
             for(int j =0; j < IMG_SIZE; j++){
-                trainingNetwork[i][j] = Math.abs(rand.nextDouble());
+                trainingNetwork[i][j]=(Math.random() / 10.0) + 0.01;
             }
         }
     }
@@ -43,7 +43,9 @@ public class NeuralNetwork {
       //  Collections.shuffle(images); //shuffle randomly list
         for(int i =0; i < images.size() ;i++ ){
             y=solutions.get(images.get(i).getLabel())==expression?1:0;
-            e = generateError(y,activation(images.get(i)));
+            double activation=activation(images.get(i));
+            activation=activation>0.5?1:0;
+            e = generateError(y,activation);
             for (int j = 0; j < trainingNetwork.length; j++) {
                 for (int k = 0; k < trainingNetwork[0].length; k++) {
                     x = images.get(i).getMatrix()[j][k];
