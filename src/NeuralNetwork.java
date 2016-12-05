@@ -78,10 +78,14 @@ public class NeuralNetwork {
         int[][] imageMatrix = image.getMatrix();
         for (int i = 0; i < imageMatrix.length; i++) {
             for (int j = 0; j < imageMatrix[0].length; j++) {
+                System.out.println(imageMatrix[i][j]);
                 sum += (imageMatrix[i][j] * trainingNetwork[i][j]);
+             //   System.out.println("sum = " +sum);
             }
         }
+        //System.out.println("activation = " +activation);
         activation=sigmoid(sum);
+       // System.out.println("activation = " +activation);
         return activation;
     }
 
