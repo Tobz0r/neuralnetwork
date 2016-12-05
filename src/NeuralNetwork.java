@@ -13,6 +13,7 @@ public class NeuralNetwork {
     private final int IMG_SIZE=20;
     private int expression;
     private double activation;
+    private final double LR=0.15;
 
     public NeuralNetwork(int expression){
         this.expression=expression;
@@ -31,43 +32,38 @@ public class NeuralNetwork {
     /**
      * Tar in en arraylista med bilder, sedan tränar
      * nätverket att känna igen bilder mha facit
-     * @param images
      */
 
-    public void trainNetwork(ArrayList<Image> images, Hashtable<String, Integer> solutions){
-        int y; //desired output
-        int x; //The input from node
-        double LR =0.15;
+    public void trainNetwork(Image image, Hashtable<String, Integer> solutions){
+        double y; //desired output
+        double x; //The input from node
         double e; // Output error
-        double wd; //delta w
-      //  Collections.shuffle(images); //shuffle randomly list
-        for(int i =0; i < images.size() ;i++ ){
-            y=solutions.get(images.get(i).getLabel())==expression?1:0;
-            double activation=activation(images.get(i));
-            activation=activation>0.5?1:0;
-            e = generateError(y,activation);
-            for (int j = 0; j < trainingNetwork.length; j++) {
-                for (int k = 0; k < trainingNetwork[0].length; k++) {
-                    x = images.get(i).getMatrix()[j][k];
-                    wd = generateDeltaW(LR, e, x);
-                    trainingNetwork[j][k] +=wd;
-                    trainingNetwork[j][k]=trainingNetwork[j][k]<0?0:trainingNetwork[j][k];
-                }
+        //  Collections.shuffle(images); //shuffle randomly list
+        y=solutions.get(image.getLabel())==expression?1:0;
+        double activation=activation(image);
+        activation=activation>0.5?1:0;
+        e = generateError(y,activation);
+        for (int j = 0; j < trainingNetwork.length; j++) {
+            for (int k = 0; k < trainingNetwork[0].length; k++) {
+                x = (image.getMatrix()[j][k]/31);
+                trainingNetwork[j][k] +=generateDeltaW(LR, e, x);
             }
         }
+        activation(image);
+
     }
 
 
-    private double generateDeltaW(double LR, double e, int x) {
+    private double generateDeltaW(double LR, double e, double x) {
         return LR*e*x;
     }
 
 
     private double sigmoid(double x){
-        return (1 / (1 + Math.exp(-x)));
+        return 1/(1+Math.pow(Math.E, -(x)));
     }
 
-    private double generateError(int y, double a){
+    private double generateError(double y, double a){
         return y-a;
     }
 
@@ -78,14 +74,10 @@ public class NeuralNetwork {
         int[][] imageMatrix = image.getMatrix();
         for (int i = 0; i < imageMatrix.length; i++) {
             for (int j = 0; j < imageMatrix[0].length; j++) {
-                System.out.println(imageMatrix[i][j]);
-                sum += (imageMatrix[i][j] * trainingNetwork[i][j]);
-             //   System.out.println("sum = " +sum);
+                sum += ((imageMatrix[i][j]/31) * trainingNetwork[i][j]);
             }
         }
-        //System.out.println("activation = " +activation);
-        activation=sigmoid(sum);
-       // System.out.println("activation = " +activation);
+        activation=sigmoid(sum/400);
         return activation;
     }
 
@@ -93,17 +85,7 @@ public class NeuralNetwork {
         return activation;
     }
 
-    public void printNetwork(){
-        try {
-            for (int i = 0; i < trainingNetwork.length; i++) {
-                for (int j = 0; j < trainingNetwork[0].length; j++) {
-                    System.out.print(trainingNetwork[i][j] + " ");
-                }
-                System.out.println();
-            }
-        }catch (NullPointerException e){}
 
-    }
 
 }
 
