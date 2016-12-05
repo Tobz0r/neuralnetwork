@@ -17,8 +17,6 @@ public class NeuralNetwork {
     public NeuralNetwork(int expression){
         this.expression=expression;
         trainingNetwork = new double[IMG_SIZE][IMG_SIZE];
-        Random rand = new Random();
-        rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < IMG_SIZE; i++){
             for(int j =0; j < IMG_SIZE; j++){
                 trainingNetwork[i][j]=(Math.random()/10.0)+0.01;

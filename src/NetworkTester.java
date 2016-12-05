@@ -41,7 +41,6 @@ public class NetworkTester {
                 }
             }
         }
-
     }
 
     public void test(ArrayList<Image> images){
