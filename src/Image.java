@@ -56,9 +56,9 @@ public class Image {
         }catch (NullPointerException e){}
 
     }
-    /**
+
     // Roterar matrisen 90 grader clockwise x antal gånger
-    private double[][] rotateImage(int nrOfRotations) {
+    public void rotateImage(int nrOfRotations) {
         double[][] rotationArr = new double[20][20];
 
         for(int i=0; i < nrOfRotations;i++) {
@@ -68,15 +68,24 @@ public class Image {
                 }
             }
         }
-        return rotationArr;
+        matrix=rotationArr;
     }
-    private double[][] splitMatrix(double[][] image, int firstX, int firstY, int lastX, int lastY) {
+
+    /**
+     * Slits the matrix into a submatrix
+     * @param firstX the first X-index
+     * @param firstY the first Y-index
+     * @param lastX
+     * @param lastY
+     * @return
+     */
+    public double[][] splitMatrix(int firstX, int firstY, int lastX, int lastY) {
         double[][] retArr = new double[firstX+lastX][firstY+lastY];
         int row=0;
         int column=0;
         for (int i=firstX; i<lastX;i++) {
             for (int j=firstY; j<lastY;j++) {
-                retArr[row][column] = image[i][j];
+                retArr[row][column] = matrix[i][j];
                 column++;
             }
             column=0;
@@ -85,6 +94,5 @@ public class Image {
 
         return retArr;
     }
-**/
 
 }
