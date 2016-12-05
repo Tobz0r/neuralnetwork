@@ -10,11 +10,11 @@ public class Image {
 
     private final int IMG_SIZE=20;
     private String label; //Label Image1, Image2 etc..
-    private int[][] matrix;
+    private double[][] matrix;
 
     public Image(){
         label=null;
-        matrix=new int[IMG_SIZE][IMG_SIZE];
+        matrix=new double[IMG_SIZE][IMG_SIZE];
     }
 
     public String getLabel(){
@@ -33,7 +33,7 @@ public class Image {
         return matrix.length==IMG_SIZE && label!=null;
     }
 
-    public int[][] getMatrix(){
+    public double[][] getMatrix(){
         return matrix;
     }
 

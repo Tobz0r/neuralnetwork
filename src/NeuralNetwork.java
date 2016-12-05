@@ -72,7 +72,7 @@ public class NeuralNetwork {
 
     public double activation(Image image) {
         double sum = 0;
-        int[][] imageMatrix = image.getMatrix();
+        double[][] imageMatrix = image.getMatrix();
         for (int i = 0; i < imageMatrix.length; i++) {
             for (int j = 0; j < imageMatrix[0].length; j++) {
                 System.out.println((imageMatrix[i][j]/31));

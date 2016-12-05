@@ -33,6 +33,7 @@ public class NetworkTester {
             wrongAnswers = 0;
             //Collections.shuffle(images);
             for (Image image : images) {
+
                 for(NeuralNetwork network:networks){
                     network.trainNetwork(image,solutions);
                 }
