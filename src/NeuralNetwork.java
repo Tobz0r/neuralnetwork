@@ -54,6 +54,7 @@ public class NeuralNetwork {
     }
 
 
+    
     private double generateDeltaW(double LR, double e, double x) {
         return LR*e*x;
     }
