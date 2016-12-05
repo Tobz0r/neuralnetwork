@@ -54,7 +54,6 @@ public class NeuralNetwork {
     }
 
 
-    
     private double generateDeltaW(double LR, double e, double x) {
         return LR*e*x;
     }
@@ -80,8 +79,7 @@ public class NeuralNetwork {
                 //System.out.println("sum= " +sum);
             }
         }
-        activation=sigmoid(sum);
-       // System.out.println("activation " + activation);
+        activation=sigmoid(sum/400);
         return activation;
     }
 
