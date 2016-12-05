@@ -12,8 +12,7 @@ public class NeuralNetwork {
     private double[][] trainingNetwork;
     private final int IMG_SIZE=20;
     private int expression;
-    private double activation;
-    private final double LR=0.15;
+    private final double LR=0.7;
 
     public NeuralNetwork(int expression){
         this.expression=expression;
@@ -49,7 +48,6 @@ public class NeuralNetwork {
                 trainingNetwork[j][k] +=generateDeltaW(LR, e, x);
             }
         }
-        activation(image);
 
     }
 
@@ -74,18 +72,16 @@ public class NeuralNetwork {
         double[][] imageMatrix = image.getMatrix();
         for (int i = 0; i < imageMatrix.length; i++) {
             for (int j = 0; j < imageMatrix[0].length; j++) {
-                System.out.println((imageMatrix[i][j]/31));
+             //   System.out.println((imageMatrix[i][j]/31));
                 sum += ((imageMatrix[i][j]/31) * trainingNetwork[i][j]);
                 //System.out.println("sum= " +sum);
             }
         }
-        activation=sigmoid(sum/400);
+        double activation=sigmoid(sum/400);
+        System.out.println(activation);
         return activation;
     }
 
-    public double getActivation(){
-        return activation;
-    }
 
 
 
