@@ -21,7 +21,7 @@ public class NeuralNetwork {
         rand.setSeed(System.currentTimeMillis());
         for(int i=0; i < IMG_SIZE; i++){
             for(int j =0; j < IMG_SIZE; j++){
-                trainingNetwork[i][j]=(Math.random() / 10.0) + 0.01;
+                trainingNetwork[i][j]=(Math.random()/10.0)+0.01;
             }
         }
     }

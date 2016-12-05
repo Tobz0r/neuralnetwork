@@ -6,9 +6,9 @@ public class Faces {
 
     public static void main(String[] args) {
         ImageParser fileReader=new ImageParser();
-        ArrayList<Image> training=fileReader.parseImage("training-A.txt");
-        ArrayList<Image> testing=fileReader.parseImage("test-B.txt");
-        Hashtable<String, Integer> solutions=fileReader.parseSolutions("facit-A.txt");
+        ArrayList<Image> training=fileReader.parseImage(args[0]);
+        ArrayList<Image> testing=fileReader.parseImage(args[2]);
+        Hashtable<String, Integer> solutions=fileReader.parseSolutions(args[1]);
         NetworkTester tester=new NetworkTester(training,solutions);
         tester.train();
         tester.test(testing);
