@@ -12,8 +12,7 @@ public class NeuralNetwork {
     private double[][] trainingNetwork;
     private final int IMG_SIZE=20;
     private int expression;
-    private double activation;
-    private final double LR=0.15;
+    private final double LR=0.7;
 
     public NeuralNetwork(int expression){
         this.expression=expression;
@@ -30,8 +29,8 @@ public class NeuralNetwork {
 
 
     /**
-     * Tar in en arraylista med bilder, sedan tränar
-     * nätverket att känna igen bilder mha facit
+     * Tar in en arraylista med bilder, sedan trÃ¤nar
+     * nÃ¤tverket att kÃ¤nna igen bilder mha facit
      */
 
     public void trainNetwork(Image image, Hashtable<String, Integer> solutions){
@@ -41,7 +40,7 @@ public class NeuralNetwork {
         //  Collections.shuffle(images); //shuffle randomly list
         y=solutions.get(image.getLabel())==expression?1:0;
         double activation=activation(image);
-        activation=activation>0.5?1:0;
+        // activation=activation>0.5?1:0;
         e = generateError(y,activation);
         for (int j = 0; j < trainingNetwork.length; j++) {
             for (int k = 0; k < trainingNetwork[0].length; k++) {
@@ -49,7 +48,6 @@ public class NeuralNetwork {
                 trainingNetwork[j][k] +=generateDeltaW(LR, e, x);
             }
         }
-        activation(image);
 
     }
 
@@ -74,20 +72,16 @@ public class NeuralNetwork {
         double[][] imageMatrix = image.getMatrix();
         for (int i = 0; i < imageMatrix.length; i++) {
             for (int j = 0; j < imageMatrix[0].length; j++) {
-                //System.out.println(trainingNetwork[i][j]);
+                //   System.out.println((imageMatrix[i][j]/31));
                 sum += ((imageMatrix[i][j]/31) * trainingNetwork[i][j]);
                 //System.out.println("sum= " +sum);
             }
         }
-       // System.out.println(activation);
-        activation=sigmoid(sum/400);
-        //System.out.println(activation);
+        double activation=sigmoid(sum/400);
+        System.out.println(activation);
         return activation;
     }
 
-    public double getActivation(){
-        return activation;
-    }
 
 
 

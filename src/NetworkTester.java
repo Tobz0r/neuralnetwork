@@ -31,7 +31,7 @@ public class NetworkTester {
         while (true) {
             if(wrongAnswers==0)break;
             wrongAnswers = 0;
-            //Collections.shuffle(images);
+            Collections.shuffle(images);
             for (Image image : images) {
 
                 for(NeuralNetwork network:networks){
@@ -44,7 +44,7 @@ public class NetworkTester {
             }
             i++;
             System.out.println("WRONG "+wrongAnswers);
-           // wrongAnswers = wrongAnswers / images.size();
+            // wrongAnswers = wrongAnswers / images.size();
         }
         System.out.println("ITERATIONS "+i);
     }
