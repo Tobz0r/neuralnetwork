@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.Hashtable;
 
 /**
- * Created by Tobz0r on 2016-11-30.
+ * Handles the preceptrons, training and writing out the testresults
+ * @author dv13tes,dv13trm
  */
 public class NetworkTester {
 
@@ -25,6 +26,11 @@ public class NetworkTester {
             networks.add(new NeuralNetwork(i));
         }
     }
+
+    /**
+     * trains the nodes with given images, will run until there is no
+     * wrong return values.
+     */
     public void train(){
         double wrongAnswers = 1;
         while (true) {
@@ -35,22 +41,31 @@ public class NetworkTester {
                 for(NeuralNetwork network:networks){
                     network.trainNetwork(image,solutions);
                 }
-                int answer=testResults(image);
-                if (answer != solutions.get(image.getLabel())) {
+                int result=testResults(image);
+                if (result != solutions.get(image.getLabel())) {
                     wrongAnswers++;
                 }
             }
         }
     }
 
+    /**
+     * Runs test for each image and prints result to stdout
+     * @param images a list with images
+     */
     public void test(ArrayList<Image> images){
         for(Image image: images){
-           // System.out.println(image.getLabel()+" "+testResults(image));
+            System.out.println(image.getLabel()+" "+testResults(image));
         }
     }
 
 
-
+    /**
+     * Compares the activationvalue for each node and choses the highest
+     * as the result
+     * @param image the image to be tested
+     * @return highest acivation value
+     */
     public int testResults(Image image){
         double happy=networks.get(0).activation(image);
         double sad=networks.get(1).activation(image);

@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * Created by sejiaw on 2016-10-13.
+ * Parser for images
+ * @author dv13tes,dv13trm
  */
 public class ImageParser {
 
+    /**
+     * Parse a image and adds it to a list
+     * @param filePath path to the imagefile
+     * @return a list of parsed images
+     */
     public ArrayList<Image> parseImage(String filePath) {
         ArrayList<Image> images=new ArrayList<>();
         Image face=new Image();
@@ -50,12 +56,17 @@ public class ImageParser {
         return images;
     }
 
-    public Hashtable<String, Integer> parseSolutions(String failePath) {
+    /**
+     * Parses solutions and adds them to a table
+     * @param filePath path to the solutions
+     * @return hashtable with solutions
+     */
+    public Hashtable<String, Integer> parseSolutions(String filePath) {
         Hashtable<String, Integer> solutions = new Hashtable<>();
         BufferedReader br=null;
         String line=null;
         try{
-            br=new BufferedReader(new FileReader(failePath));
+            br=new BufferedReader(new FileReader(filePath));
             while((line=br.readLine())!=null){
                 if (!line.startsWith("#") || !line.trim().isEmpty()) {
                     String[] lines=line.split(" ");

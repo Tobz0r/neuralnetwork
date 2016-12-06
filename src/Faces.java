@@ -9,7 +9,6 @@ import java.util.Hashtable;
  * @author dv13trm, dv13tes
  */
 public class Faces {
- //   java Faces training-A.txt facit-A.txt test-B.txt > result.txt
 
     public static void main(String[] args) {
         ImageParser fileReader=new ImageParser();

@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
-import java.util.Random;
 
 /**
- * MAINFUNKTIONISH
+ * The class for the trainingnodes
+ * @author dv13tes,dv13trm
  */
-
 public class NeuralNetwork {
 
     private double[][] trainingNetwork;
@@ -25,43 +22,61 @@ public class NeuralNetwork {
     }
 
 
-
     /**
-     * Tar in en arraylista med bilder, sedan trÃ¤nar
-     * nÃ¤tverket att kÃ¤nna igen bilder mha facit
+     * Trains the node with a image
+     * @param image an image with an expression to be trained
+     * @param solutions table with the expressiontype of the image
      */
-
     public void trainNetwork(Image image, Hashtable<String, Integer> solutions){
-        double y; //desired output
-        double x; //The input from node
-        double e; // Output error
-        y=solutions.get(image.getLabel())==expression?1:0;
-        e = generateError(y,activation(image));
+        double output; //desired output
+        double pixel; //The input from node
+        double error; // Output error
+        output=solutions.get(image.getLabel())==expression?1:0;
+        error = generateError(output,activation(image));
         for (int j = 0; j < trainingNetwork.length; j++) {
             for (int k = 0; k < trainingNetwork[0].length; k++) {
-                x = (image.getMatrix()[j][k]/31);
-                trainingNetwork[j][k] +=generateDeltaW(LR, e, x);
+                pixel = (image.getMatrix()[j][k]/31);
+                trainingNetwork[j][k] += deltaW(error, pixel);
             }
         }
 
     }
 
-
-    private double generateDeltaW(double LR, double e, double x) {
+    /**
+     * generates the difference between perceptron and image
+     * @param e output error
+     * @param x imagenode pixel
+     * @return a delta value
+     */
+    private double deltaW(double e, double x) {
         return LR*e*x;
     }
 
-
+    /**
+     *  Sigmoid function used by acitivation
+     * @param x value for sigmpid
+     * @return acitvationvalue
+     */
     private double sigmoid(double x){
         return 1/(1+Math.pow(Math.E, -(x)));
     }
 
+    /**
+     * Generated outputerror for the node
+     * @param y desired output
+     * @param a acitvationvalue for node
+     * @return output error
+     */
     private double generateError(double y, double a){
         return y-a;
     }
 
 
-
+    /**
+     * Activationfunction used to calculate the classification of a image
+     * @param image the image to be calculated
+     * @return sigmoidvalue of the image
+     */
     public double activation(Image image) {
         double sum = 0;
         double[][] imageMatrix = image.getMatrix();
@@ -70,7 +85,6 @@ public class NeuralNetwork {
                 sum += ((imageMatrix[i][j]/31) * trainingNetwork[i][j]);
             }
         }
-        double activation=sigmoid(sum/400);
-        return activation;
+        return sigmoid(sum/400);
     }
 }
